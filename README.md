@@ -16,7 +16,7 @@ This template repository only contains a few project-related files:
         with:
           java-version: 11
       - name: Build with Bach.java
-        run: jshell https://bit.ly/bach-jsh
+        run: jshell https://bit.ly/bach-build
   ```
 - **`module-info.java`** in `src/com.github.sormuras.bach.template/main/java`
   ```java
