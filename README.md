@@ -1,24 +1,11 @@
 # 📋 Minimal modular Java project template using Bach.java
 
-This template repository only contains a few project-related files:
+This template repository only contains a single project-defining source file:
 
-- **`build.yml`** in `.github/workflows`
-  ```yml
-  name: build
-  on: push
-  jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v1
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Build with Bach.java
-        run: jshell https://bit.ly/bach-build
-  ```
 - **`module-info.java`** in `src/com.github.sormuras.bach.template/main/java`
   ```java
   module com.github.sormuras.bach.template {}
   ```
+
+This project also provides a [GitHub Actions](https://github.com/features/actions)-based workflow configuration file: [build.yml](.github/workflows/build.yml).
+It demonstrates the installation-free build feature of Bach.java by calling `jshell https://bit.ly/bach-build`.
