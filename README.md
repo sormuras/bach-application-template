@@ -27,5 +27,5 @@ Project bach.template
 			info: src/com.github.sormuras.bach.template/main/java/module-info.java
 			Module Descriptor com.github.sormuras.bach.template
 				 main: -
-				 requires: [mandated java.base]
+				 requires: []
 ```
