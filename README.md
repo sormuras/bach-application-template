@@ -10,7 +10,7 @@ This template repository only contains a single project-defining source file:
 This project also provides a [GitHub Actions](https://github.com/features/actions)-based workflow configuration file: [build.yml](.github/workflows/build.yml).
 It demonstrates the installation-free build feature of Bach.java by via [JShell](https://docs.oracle.com/en/java/javase/11/tools/jshell.html).
 ```shell
- jshell https://bit.do/bach-build
+ jshell https://sormuras.de/bach-build
 ```
 
 ## Summary
