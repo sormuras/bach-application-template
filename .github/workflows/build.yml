@@ -12,7 +12,7 @@ jobs:
       with:
         java-version: 11
     - name: Build with Bach.java
-      run: jshell https://bit.do/bach-build
+      run: jshell https://sormuras.de/bach-build
     - name: 'Upload build summary'
       uses: actions/upload-artifact@v1
       with:
