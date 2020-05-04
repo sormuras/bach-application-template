@@ -16,5 +16,5 @@ jobs:
     - name: 'Upload build summary'
       uses: actions/upload-artifact@v1
       with:
-        name: summary.md
+        name: artifact
         path: .bach/summary.md
