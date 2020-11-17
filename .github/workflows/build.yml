@@ -1,20 +1,30 @@
 name: build
-
-on: push
-
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: "Build (JDK-${{ matrix.java }}, ${{ matrix.os }})"
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ] # , macOS-latest, windows-latest
+        java: [ 16-ea ]
+    runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-    - name: Build with Bach.java
-      run: jshell https://sormuras.de/bach/build
-    - name: 'Upload build summary'
-      uses: actions/upload-artifact@v1
-      with:
-        name: artifact
-        path: .bach/workspace/summary.md
+      - name: 'Check out repository'
+        uses: actions/checkout@v2
+      - name: 'Set up JDK'
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+      - name: 'Build with Bach'
+        uses: sormuras/bach-build@main
+      - name: 'Upload modules'
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ github.event.repository.name }}-${{ matrix.os }}-${{ github.sha }}
+          path: |
+            .bach/workspace/modules
