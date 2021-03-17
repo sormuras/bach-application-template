@@ -1,4 +1,4 @@
-# 📋 Modular Java application template using Bach.java
+# 📋 Modular Java application template using Bach
 
 This template repository only contains a single project-defining source file:
 
