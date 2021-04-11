@@ -19,7 +19,7 @@ jobs:
         java: [ 16 ]
     runs-on: ${{ matrix.os }}
     env:
-      ARTIFACT: ${{ github.event.repository.name }}-build-${{ env.VERSION }}-${{ matrix.os }}
+      ARTIFACT: ${{ github.event.repository.name }}-build-${{ matrix.os }}-${{ github.sha }}
     steps:
       - name: 'Check out repository'
         uses: actions/checkout@v2
