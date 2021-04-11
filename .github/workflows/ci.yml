@@ -1,0 +1,42 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  VERSION: '0-ea'
+  ARTIFACT: ${{ github.event.repository.name }}-build-${{ github.sha }}-${{ matrix.os }}
+
+jobs:
+  build:
+    name: 'Build (JDK-${{ matrix.java }}, ${{ matrix.os }})'
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest , macOS-latest, windows-latest ]
+        java: [ 16 ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: 'Check out repository'
+        uses: actions/checkout@v2
+      - name: 'Set up JDK'
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'zulu'
+      - name: 'Build with Bach'
+        uses: sormuras/bach-build
+        with:
+          bach-arguments: --project-version ${{ env.VERSION }}+${{ github.sha }} build
+      - name: 'Upload build artifact ${{ env.ARTIFACT }}'
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.ARTIFACT }}
+          path: |
+            README.md
+            .bach/workspace/logbook.md
+            .bach/workspace/modules
