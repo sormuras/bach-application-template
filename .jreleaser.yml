@@ -8,7 +8,8 @@ project:
 
 release:
   github:
-    username: sormuras
+    owner: sormuras
+    overwrite: true
 
 files:
   artifacts:
