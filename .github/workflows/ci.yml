@@ -18,8 +18,6 @@ jobs:
         os: [ ubuntu-latest , macOS-latest, windows-latest ]
         java: [ 16 ]
     runs-on: ${{ matrix.os }}
-    env:
-      ARTIFACT: '${{ github.event.repository.name }}-$VERSION-${{ runner.os }}'
     steps:
       - name: 'Check out repository'
         uses: actions/checkout@v2
@@ -32,12 +30,11 @@ jobs:
         uses: sormuras/bach-build@v1
         with:
           bach-arguments: --project-version ${{ env.VERSION }} build
-      - name: 'Upload build artifact ${{ env.ARTIFACT }}'
+      - name: 'Upload build artifact'
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.ARTIFACT }}
+          name: ${{ github.event.repository.name }}-${{ env.VERSION}}-${{ runner.os }}
           path: |
-            README.md
             .bach/workspace/logbook.md
             .bach/workspace/modules
