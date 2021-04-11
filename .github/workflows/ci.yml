@@ -7,8 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  VERSION: '0-ea'
-  ARTIFACT: ${{ github.event.repository.name }}-build-${{ github.sha }}-${{ matrix.os }}
+  VERSION: '0-ea+${{ github.sha }}'
 
 jobs:
   build:
@@ -19,6 +18,8 @@ jobs:
         os: [ ubuntu-latest , macOS-latest, windows-latest ]
         java: [ 16 ]
     runs-on: ${{ matrix.os }}
+    env:
+      ARTIFACT: ${{ github.event.repository.name }}-build-${{ env.VERSION }}-${{ matrix.os }}
     steps:
       - name: 'Check out repository'
         uses: actions/checkout@v2
@@ -28,9 +29,9 @@ jobs:
           java-version: ${{ matrix.java }}
           distribution: 'zulu'
       - name: 'Build with Bach'
-        uses: sormuras/bach-build
+        uses: sormuras/bach-build@v1
         with:
-          bach-arguments: --project-version ${{ env.VERSION }}+${{ github.sha }} build
+          bach-arguments: --project-version ${{ env.VERSION }} build
       - name: 'Upload build artifact ${{ env.ARTIFACT }}'
         if: always()
         uses: actions/upload-artifact@v2
