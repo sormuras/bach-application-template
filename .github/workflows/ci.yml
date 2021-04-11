@@ -7,7 +7,8 @@ on:
     branches: [ main ]
 
 env:
-  VERSION: '0-ea+${{ github.sha }}'
+  VERSION: '0-ea+${{ github.run_number }}'
+  ARTIFACT: '${{ github.event.repository.name }}-$VERSION-${{ runner.os }}'
 
 jobs:
   build:
@@ -18,8 +19,6 @@ jobs:
         os: [ ubuntu-latest , macOS-latest, windows-latest ]
         java: [ 16 ]
     runs-on: ${{ matrix.os }}
-    env:
-      ARTIFACT: ${{ github.event.repository.name }}-build-${{ matrix.os }}-${{ github.sha }}
     steps:
       - name: 'Check out repository'
         uses: actions/checkout@v2
