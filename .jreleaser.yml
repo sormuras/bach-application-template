@@ -13,9 +13,6 @@ release:
 
 files:
   artifacts:
-    - path: bach-application-template-{{projectVersion}}-Linux.zip
-      platform: linux
-    - path: bach-application-template-{{projectVersion}}-macOS.zip
-      platform: osx
-    - path: bach-application-template-{{projectVersion}}-Windows.zip
-      platform: windows
+    - path: artifact/bach-application-template-{{projectVersion}}-Linux.zip
+    - path: artifact/bach-application-template-{{projectVersion}}-macOS.zip
+    - path: artifact/bach-application-template-{{projectVersion}}-Windows.zip

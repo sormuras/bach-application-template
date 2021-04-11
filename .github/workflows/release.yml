@@ -42,7 +42,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ github.event.repository.name }}-${{ env.VERSION }}-${{ runner.os }}
+          name: artifact
           path: ${{ github.event.repository.name }}-${{ env.VERSION }}-${{ runner.os }}.zip
   deploy-to-releases:
     needs: [ build ]
