@@ -11,7 +11,7 @@ env:
 
 jobs:
   build:
-    name: 'Build (JDK-${{ matrix.java }}, ${{ matrix.os }})'
+    name: 'Build with Java ${{ matrix.java }} on ${{ runner.os }}'
     strategy:
       fail-fast: false
       matrix:
@@ -34,7 +34,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ github.event.repository.name }}-${{ env.VERSION}}-${{ runner.os }}
+          name: ${{ github.event.repository.name }}-${{ env.VERSION }}-${{ runner.os }}
           path: |
+            .gitignore
             .bach/workspace/logbook.md
             .bach/workspace/modules
