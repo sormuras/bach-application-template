@@ -17,7 +17,7 @@ env:
 
 jobs:
   build:
-    name: 'Build with Java ${{ matrix.java }} on ${{ runner.os }}'
+    name: 'Build with Java ${{ matrix.java }} on ${{ matrix.os }}'
     strategy:
       fail-fast: false
       matrix:
