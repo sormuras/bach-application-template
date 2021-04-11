@@ -36,15 +36,14 @@ jobs:
         uses: sormuras/bach-build@v1
         with:
           bach-arguments: --project-version ${{ env.VERSION }} build
+      - name: 'Zip the image'
+        run: jar --create --file ${{ github.event.repository.name }}-${{ env.VERSION }}-${{ runner.os }}.zip -C .bach/workspace/image .
       - name: 'Upload build artifact'
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: ${{ github.event.repository.name }}-${{ env.VERSION }}-${{ runner.os }}
-          path: |
-            .gitignore
-            .bach/workspace/logbook.md
-            .bach/workspace/image
+          path: ${{ github.event.repository.name }}-${{ env.VERSION }}-${{ runner.os }}.zip
   deploy-to-releases:
     needs: [ build ]
     runs-on: ubuntu-latest
@@ -53,3 +52,10 @@ jobs:
         uses: actions/download-artifact@v2
       - name: 'Display structure of downloaded files'
         run: ls -R
+      - name: 'Launch JReleaser'
+        uses: jreleaser/release-action@v1
+        with:
+          arguments: full-release --config-file .jreleaser.yml
+        env:
+          JRELEASER_PROJECT_VERSION: ${{ env.VERSION }}
+          JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
