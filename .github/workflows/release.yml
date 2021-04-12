@@ -63,5 +63,4 @@ jobs:
           tag_name: ${{ github.event.inputs.tag-version }}
           prerelease: ${{ github.event.inputs.pre-release }}
           body: 'Release ${{ env.VERSION }}'
-          fail_on_unmatched_files: true
           files: artifact/*.zip
