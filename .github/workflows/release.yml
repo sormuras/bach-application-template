@@ -59,7 +59,7 @@ jobs:
       - name: 'Launch JReleaser'
         uses: jreleaser/release-action@v1
         with:
-          arguments: full-release --config-file .jreleaser.yml
+          arguments: full-release --config-file .github/jreleaser.yml
         env:
           JRELEASER_PROJECT_VERSION: ${{ env.VERSION }}
           JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
