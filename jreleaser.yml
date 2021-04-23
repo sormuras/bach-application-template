@@ -17,11 +17,15 @@ release:
 
 distributions:
   bach-application-template:
+    type: JLINK
     executable: application
     artifacts:
       - path: 'artifact/{{distributionName}}-{{projectVersion}}-Linux.zip'
+        transform: 'application-{{projectVersion}}-linux.zip'
         platform: linux
       - path: 'artifact/{{distributionName}}-{{projectVersion}}-macOS.zip'
+        transform: 'application-{{projectVersion}}-osx.zip'
         platform: osx
       - path: 'artifact/{{distributionName}}-{{projectVersion}}-Windows.zip'
+        transform: 'application-{{projectVersion}}-windows.zip'
         platform: windows
