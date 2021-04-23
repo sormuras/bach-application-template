@@ -7,6 +7,8 @@ project:
     - Christian Stein
   license: MIT
   java:
+    groupId: undefined.groupId
+    artifactId: undefined.artifactId
     version: 16
 
 release:
