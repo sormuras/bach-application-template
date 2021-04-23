@@ -19,9 +19,9 @@ distributions:
   bach-application-template:
     executable: application
     artifacts:
-      - path: '{{distributionName}}-{{projectVersion}}-Linux.zip'
+      - path: 'artifact/{{distributionName}}-{{projectVersion}}-Linux.zip'
         platform: linux
-      - path: '{{distributionName}}-{{projectVersion}}-macOS.zip'
+      - path: 'artifact/{{distributionName}}-{{projectVersion}}-macOS.zip'
         platform: osx
-      - path: '{{distributionName}}-{{projectVersion}}-Windows.zip'
+      - path: 'artifact/{{distributionName}}-{{projectVersion}}-Windows.zip'
         platform: windows
