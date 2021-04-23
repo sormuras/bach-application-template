@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: mv .bach/workspace/image .bach/workspace/${{ github.event.repository.name }}-${{ env.VERSION }}-${{ runner.os }}
       - name: 'Zip the image'
-        run: jar --create --file ${{ github.event.repository.name }}-${{ env.VERSION }}-${{ runner.os }}.zip -C .bach/workspace ${{ github.event.repository.name }}-${{ env.VERSION }}-${{ runner.os }}
+        run: jar --no-manifest --create --file ${{ github.event.repository.name }}-${{ env.VERSION }}-${{ runner.os }}.zip -C .bach/workspace ${{ github.event.repository.name }}-${{ env.VERSION }}-${{ runner.os }}
       - name: 'Upload build artifact'
         if: always()
         uses: actions/upload-artifact@v2
