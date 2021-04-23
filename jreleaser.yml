@@ -1,0 +1,25 @@
+project:
+  name: bach-application-template
+  description: Modular Java Application Template 
+  longDescription: Modular Java Application Template 
+  website: https://github.com/sormuras/bach-application-template
+  authors:
+    - Christian Stein
+  license: MIT
+  java:
+    version: 16
+
+release:
+  github:
+    overwrite: true
+
+distributions:
+  bach-application-template:
+    executable: application
+    artifacts:
+      - path: '{{distributionName}}-{{projectVersion}}-Linux.zip'
+        platform: linux
+      - path: '{{distributionName}}-{{projectVersion}}-macOS.zip'
+        platform: osx
+      - path: '{{distributionName}}-{{projectVersion}}-Windows.zip'
+        platform: windows
