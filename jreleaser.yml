@@ -14,7 +14,10 @@ project:
 release:
   github:
     overwrite: true
-    tagName: {{projectVersion}}
+    tagName: '{{projectVersion}}'
+    releaseName: '{{projectVersion}}'
+    changelog:
+      enabled: false
 
 distributions:
   bach-application-template:
