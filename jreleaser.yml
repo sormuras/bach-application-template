@@ -5,11 +5,7 @@ project:
   website: https://github.com/sormuras/bach-application-template
   authors:
     - Christian Stein
-  license: MIT
-  java:
-    groupId: undefined.groupId
-    artifactId: undefined.artifactId
-    version: 16
+  license: MI
 
 release:
   github:
@@ -19,17 +15,11 @@ release:
     changelog:
       enabled: false
 
-distributions:
-  bach-application-template:
-    type: JLINK
-    executable: application
-    artifacts:
-      - path: 'artifact/{{distributionName}}-{{projectVersion}}-Linux.zip'
-        transform: 'application-{{projectVersion}}-linux.zip'
-        platform: linux
-      - path: 'artifact/{{distributionName}}-{{projectVersion}}-macOS.zip'
-        transform: 'application-{{projectVersion}}-osx.zip'
-        platform: osx
-      - path: 'artifact/{{distributionName}}-{{projectVersion}}-Windows.zip'
-        transform: 'application-{{projectVersion}}-windows.zip'
-        platform: windows
+files:
+  artifacts:
+    - path: 'artifact/{{projectName}}-{{projectVersion}}-Linux.zip'
+      transform: '{{projectName}}-{{projectVersion}}-linux.zip'
+    - path: 'artifact/{{projectName}}-{{projectVersion}}-macOS.zip'
+      transform: '{{projectName}}-{{projectVersion}}-osx.zip'
+    - path: 'artifact/{{projectName}}-{{projectVersion}}-Windows.zip'
+      transform: '{{projectName}}-{{projectVersion}}-windows.zip'
