@@ -7,14 +7,13 @@ on:
         description: 'Tag as version'
         required: true
         default: '1-ea'
-      snapshot-pattern:
-        description: 'Pre-release? (regex on version)'
+      pre-release:
+        description: 'Pre-release? [''true''|''false'']'
         required: true
-        default: '.*-ea'
+        default: 'true'
 
 env:
   VERSION: ${{ github.event.inputs.tag-version }}
-  SNAPSHOT_PATTERN: ${{ github.event.inputs.snapshot-pattern }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -69,17 +68,7 @@ jobs:
           distribution: 'zulu'
       - name: 'Release with JReleaser'
         uses: jreleaser/release-action@v1
-        with:
-          version: early-access
         env:
-          JRELEASER_PROJECT_VERSION: ${{ env.VERSION }}
-          JRELEASER_SNAPSHOT_PATTERN: ${{ env.SNAPSHOT_PATTERN }}
           JRELEASER_GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
-      - name: 'Upload JReleaser output'
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifact
-          path: |
-            out/jreleaser/trace.log
-            out/jreleaser/output.properties
+          JRELEASER_PROJECT_VERSION: ${{ env.VERSION }}
+          JRELEASER_PRERELEASE: ${{ github.event.inputs.pre-release }}
